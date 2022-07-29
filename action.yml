@@ -23,7 +23,7 @@ runs:
       shell: bash
     - name: Set Build Number to environment
       shell: powershell
-      run: echo "BUILD_NUMBER=${{ steps.random-number-generator.outputs.random-number }}" >> $env:GITHUB_ENV
+      run: echo "BUILD_NUMBER=999999999" >> $env:GITHUB_ENV
     - name: Showlog 4
       run: echo "Done ${{ env.BUILD_NUMBER }}"
       shell: powershell
