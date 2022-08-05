@@ -14,7 +14,7 @@ runs:
       run: |
         $buildPath="${{ inputs.build-path-zip }}".Substring(0, "${{ inputs.build-path-zip }}".Length - 4);
         echo "Build path $buildPath"
-        if ($buildPath.Trim().StartsWith(${{ github.workspace }}, $true, $null)) {
+        if ($buildPath.Trim().StartsWith("${{ github.workspace }}", $true, $null)) {
           echo "BUILD_PATH=$buildPath" >> $env:GITHUB_ENV
         }
         else {
