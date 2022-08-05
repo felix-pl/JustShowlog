@@ -9,13 +9,13 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Get build path
+    - name: Get build path for unzip
       shell: powershell
       run: |
         $buildPath="${{ inputs.build-path-zip }}".Substring(0, "${{ inputs.build-path-zip }}".Length - 4);
         echo "Build path $buildPath"
-        echo "Build_Path=$buildPath" >> $env:GITHUB_ENV
+        echo "BUILD_PATH=${{ github.workspace }}\$buildPath" >> $env:GITHUB_ENV
         
     - name: Done
       shell: powershell
-      run: echo "Done ${{ env.Build_Path }}"
+      run: echo "Done ${{ env.BUILD_PATH }}"
