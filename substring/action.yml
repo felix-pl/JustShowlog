@@ -12,9 +12,9 @@ runs:
     - name: Get build path for unzip
       shell: powershell
       run: |
-        $buildPath="${{ inputs.build-path-zip }}".Substring(0, "${{ inputs.build-path-zip }}".Length - 4);
+        $buildPath="${{ inputs.build-path-zip }}".Trim().Replace(".zip", "")
         echo "Build path $buildPath"
-        if ($buildPath.Trim().StartsWith("${{ github.workspace }}", $true, $null)) {
+        if ($buildPath.StartsWith("${{ github.workspace }}", $true, $null)) {
           echo "BUILD_PATH=$buildPath" >> $env:GITHUB_ENV
         }
         else {
