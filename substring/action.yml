@@ -13,7 +13,8 @@ runs:
       shell: powershell
       run: |
         $buildPath="${{ inputs.build-path-zip }}".Substring(0, "${{ inputs.build-path-zip }}".Length - 4);
-        echo "Build_Path=$buildPath" >> $env:GITHUB_ENV
+        echo "Build path $buildPath"
+        
         
     - name: Done
       shell: powershell
