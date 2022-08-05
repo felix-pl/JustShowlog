@@ -1,0 +1,19 @@
+name: Test substring
+description: 'test sub-string'
+
+inputs:
+  build-path-zip:
+    required: true
+    type: string
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Get build path
+      shell: powershell
+      run: |
+        echo ${{ inputs.build-path-zip }}.Substring(0, ${{ inputs.build-path-zip }}.Length - 4)
+        
+    - name: Done
+      shell: powershell
+      run: echo "Done"
