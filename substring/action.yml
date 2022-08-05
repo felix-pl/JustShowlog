@@ -2,7 +2,7 @@ name: Test substring
 description: 'test sub-string'
 
 inputs:
-  build-path-zip:
+  build-paths:
     required: true
     type: string
     
@@ -10,17 +10,14 @@ runs:
   using: "composite"
   steps:
     - name: Get build path for unzip
-      shell: powershell
+      shell: cmd
       run: |
-        $buildPath="${{ inputs.build-path-zip }}".Trim().Replace(".zip", "")
-        echo "Build path $buildPath"
-        if ($buildPath.StartsWith("${{ github.workspace }}", $true, $null)) {
-          echo "BUILD_PATH=$buildPath" >> $env:GITHUB_ENV
-        }
-        else {
-          echo "BUILD_PATH=${{ github.workspace }}\$buildPath" >> $env:GITHUB_ENV
-        }        
+        readarray -t paths <<<"${{ inputs.build-paths }}"
+        for each in "${paths[@]}"
+        do
+          echo "$each"
+        done
         
     - name: Done
-      shell: powershell
-      run: echo "Done ${{ env.BUILD_PATH }}"
+      shell: cmd
+      run: echo "Done"
