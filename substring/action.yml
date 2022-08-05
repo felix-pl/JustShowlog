@@ -12,7 +12,7 @@ runs:
     - name: Get build path
       shell: powershell
       run: |
-        echo ${{ inputs.build-path-zip }}.Substring(0, ${{ inputs.build-path-zip }}.Length - 4)
+        echo (${{ inputs.build-path-zip }}).Substring(0, (${{ inputs.build-path-zip }}).Length - 4)
         
     - name: Done
       shell: powershell
