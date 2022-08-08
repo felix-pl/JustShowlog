@@ -5,7 +5,9 @@ Param(
 
 Write-Host "Inputss: $file_scripts."
 
-$fileScripts = $file_scripts.Split('\n').Trim();
+$fileScripts = $file_scripts.Split([Environment]::NewLine, [StringSplitOptions]::RemoveEmptyEntries)
+
+Write-Host "File array: $fileScripts."
 
 $sqlcmdTool = "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\sqlcmd.exe"
 
