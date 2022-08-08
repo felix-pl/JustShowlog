@@ -1,0 +1,20 @@
+name: Test SQLCMD
+description: 'Test SQL cmd'
+
+inputs:
+  file-scripts:
+    required: true
+    type: string
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Check sql cmd
+      shell: powershell
+      run: >
+        ${{ github.action_path }}\scripts\sqlcmdtest.ps1 
+        "${{ inputs.file-scripts }}"
+        
+    - name: Done
+      shell: cmd
+      run: echo "Done"
