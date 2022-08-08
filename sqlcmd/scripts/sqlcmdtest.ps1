@@ -3,18 +3,23 @@ Param(
     [string]$file_scripts
 )
 
-Write-Host "Inputss: $file_scripts."
+$file_scripts = $file_scripts.Trim();
 
-$fileScripts = $file_scripts.Split([Environment]::NewLine, [StringSplitOptions]::RemoveEmptyEntries).Trim();
+Write-Host "Inputss: $file_scripts."
+Write-Host "----------------------------------"
+$fileScripts = $file_scripts.Split([Environment]::NewLine, [StringSplitOptions]::RemoveEmptyEntries);
 
 Write-Host "File array: $fileScripts."
-
-$sqlcmdTool = "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\sqlcmd.exe"
+Write-Host "----------------------------------"
 
 foreach ($fileScript in $fileScripts)
 {
 	Write-Host "File name: $fileScript."
 }
+Write-Host "----------------------------------"
+
+$sqlcmdTool = "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\sqlcmd.exe"
 & $sqlcmdTool -?
 
+Write-Host "----------------------------------"
 Write-Host "Doneeeeeeeeeeeeeee!"
