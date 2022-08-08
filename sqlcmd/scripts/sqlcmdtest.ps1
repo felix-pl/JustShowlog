@@ -5,7 +5,7 @@ Param(
 
 Write-Host "Inputss: $file_scripts."
 
-$fileScripts = $file_scripts.Split([Environment]::NewLine, [StringSplitOptions]::RemoveEmptyEntries)
+$fileScripts = $file_scripts.Split([Environment]::NewLine, [StringSplitOptions]::RemoveEmptyEntries).Trim();
 
 Write-Host "File array: $fileScripts."
 
