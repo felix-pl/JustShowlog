@@ -2,22 +2,26 @@ name: Test substring
 description: 'test sub-string'
 
 inputs:
-  build-paths:
+  build-path:
     required: true
     type: string
     
 runs:
   using: "composite"
   steps:
-    - name: Get build path for unzip
-      shell: cmd
-      run: |
-        readarray -t paths <<<"${{ inputs.build-paths }}"
-        for each in "${paths[@]}"
-        do
-          echo "$each"
-        done
+    - name: Get build number
+      id: build_number
+      shell: pwsh
+      run: echo "BUILD_NUMBER=$(date +'%Y.%m.%d').${{ github.run_number }}" >> $env:GITHUB_ENV        
         
     - name: Done
-      shell: cmd
-      run: echo "Done"
+      shell: pwsh
+      run: echo "build number ${{ env.BUILD_NUMBER }}"
+
+outputs:
+  build-number:
+    description: "Build number"
+    value: ${{ env.BUILD_NUMBER }}
+  build-path-zip:
+    description: "Build path zip"
+    value: "${{ inputs.build-path }}-${{ env.BUILD_NUMBER }}.zip"
