@@ -15,7 +15,7 @@ runs:
       run: echo "BUILD_NUMBER=$(date +'%Y.%m.%d').${{ github.run_number }}" >> $env:GITHUB_ENV        
       
     - name: Check condition
-      if: ${{ inputs.replace-tokens-files -Match "appsettings" }}
+      if: ${{ inputs.replace-tokens-files.ToLower().Contains('appsettings') }}
       shell: pwsh
       run: echo "Check condition successfully"
       
