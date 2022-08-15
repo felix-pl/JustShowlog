@@ -13,7 +13,12 @@ runs:
       id: build_number
       shell: pwsh
       run: echo "BUILD_NUMBER=$(date +'%Y.%m.%d').${{ github.run_number }}" >> $env:GITHUB_ENV        
-        
+      
+    - name: Check condition
+      if: ${{ inputs.replace-tokens-files -Match "appsettings" }}
+      shell: pwsh
+      run: echo "Check condition successfully"
+      
     - name: Done
       shell: pwsh
       run: echo "build number ${{ env.BUILD_NUMBER }}"
